@@ -1,3 +1,8 @@
+# Содержание
+
+1. Список li, по клику на каждый li, появляеся инпут для редактирования текста соответствующего элемента li, onBlur сохраняет изменения из инпута в элемент li
+2. Список li, по клику на кнопку edit, появляеся инпут для редактирования текста соответсвующего элемента li, по клику на кнопку save, сохраняет изменения из инпута в элемент li
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

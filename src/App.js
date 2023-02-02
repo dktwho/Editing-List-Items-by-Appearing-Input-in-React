@@ -1,23 +1,39 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import { initNotes } from './data';
 
 function App() {
+
+  const [notes, setNotes] = useState(initNotes)
+
+  function startEdit(index) {
+    setNotes([...notes], notes[index].isEdit = true)
+  }
+
+  function changeNote(index, event) {
+    setNotes([...notes], notes[index].text = event.target.value)
+  }
+
+  function endEdit(index) {
+    setNotes([...notes], notes[index].isEdit = false)
+  }
+
+  const result = notes.map((note, index) => {
+    let elem;
+    if(!note.isEdit) {
+      elem = <span onClick={() => startEdit(index)}>{note.text}</span>
+    } else {
+      elem = <input type="text" onChange={(event) => changeNote(index, event)} value={note.text} onBlur={() => endEdit(index)} />
+    }
+    return <li key={index}>{elem}</li>
+  })
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>
+        {result}
+      </ul>
     </div>
   );
 }
